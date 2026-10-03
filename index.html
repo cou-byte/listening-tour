@@ -72,7 +72,8 @@ nav a:hover{color:var(--navy);background:var(--sky-soft)}
 .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,64px);align-items:center}
 .hero-copy .kicker{font-size:1rem;color:var(--muted);margin-bottom:14px}
 .hero-copy h1 em{font-style:normal;color:var(--gold)}
-.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;margin-top:28px;max-width:440px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 20px;margin-top:28px;max-width:600px}
+@media (max-width:520px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .stat{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}.stat .ic{width:26px;height:26px;color:var(--gold);margin-top:6px}.stat b{display:block;font-family:"Poppins",sans-serif;font-size:2.2rem;font-weight:700;line-height:1;color:var(--navy)}
 .stat small{display:block;color:var(--muted);margin-top:4px;font-size:.92rem}
 .legend{display:flex;gap:18px;margin-top:22px;font-size:.9rem;color:var(--muted);flex-wrap:wrap}
@@ -382,11 +383,13 @@ const LABEL={"Northeast Florida":["start",12,4],"Panhandle":["middle",0,22],"Tam
 })();
 
 // ---- stats
+// Official session count (entered manually; not derived from ROWS). Update when new counts are reported.
+const SESSIONS = 40;
 const heard=REGIONS.filter(r=>r.heard);
 const orgs=new Set(ROWS.map(r=>r.o));
 const days=new Set(ROWS.map(r=>r.r+r.d));
 document.getElementById('stats').innerHTML=[
-  [heard.length+" of 10","regions heard from","pin"],[ROWS.length,"participants so far","people"],[orgs.size,"organizations","building"],[days.size,"session days","calendar"]
+  [heard.length+" of 10","regions heard from","pin"],[SESSIONS,"sessions","chat"],[ROWS.length,"participants","people"],[orgs.size,"organizations","building"],[days.size,"session days","calendar"]
 ].map(([b,s,i])=>`<div class="stat"><svg class="ic"><use href="#i-${i}"/></svg><div><b>${b}</b><small>${s}</small></div></div>`).join('');
 
 document.getElementById('weekgrid').innerHTML=heard.map((r,i)=>`<div class="wk"><b>Week ${i+1}</b><small>${r.n}<br>${r.dates.replace(', 2026','')}</small></div>`).join('');
