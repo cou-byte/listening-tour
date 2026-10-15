@@ -67,9 +67,10 @@ nav a:hover{color:var(--navy);background:var(--sky-soft)}
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 24px;margin-top:28px;max-width:600px}
 .stat{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}.stat .ic{width:26px;height:26px;color:var(--gold);margin-top:6px}.stat b{display:block;font-family:"Poppins",serif;font-size:2rem;font-weight:600;line-height:1;color:var(--navy)}
 .stat small{display:block;color:var(--muted);margin-top:4px;font-size:.92rem}
-.legend{display:flex;gap:18px;margin-top:22px;font-size:.9rem;color:var(--muted);flex-wrap:wrap}
+.legend{display:flex;gap:18px;margin-top:12px;font-size:.9rem;color:var(--muted);flex-wrap:wrap;justify-content:center;align-items:center}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px;margin-right:6px}
 .legend .heard i{background:var(--gold)} .legend .ahead i{background:var(--paper);border:2px solid var(--map-stroke)}
+.hero-map{display:flex;flex-direction:column;align-items:center}
 #map{width:100%;height:auto;display:block}
 #map .land{fill:var(--map-land);stroke:var(--map-stroke);stroke-width:1.2;stroke-linejoin:round}
 #map .node{cursor:pointer}
@@ -85,9 +86,16 @@ nav a:hover{color:var(--navy);background:var(--sky-soft)}
 .cta{background:var(--navy-deep);color:#fff;padding:clamp(36px,5vw,56px) 0}
 .cta-in{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
 .cta p{color:var(--blue-soft);max-width:60ch;margin:12px 0 0;font-size:1.02rem}
-.btn{display:inline-block;background:var(--gold);color:#fff;text-decoration:none;font-weight:700;padding:14px 22px;border-radius:0;white-space:nowrap;font-size:1rem}
-.btn:hover{background:#E03D0E}
+.btn{display:inline-block;text-decoration:none;font-weight:700;padding:14px 22px;border-radius:0;white-space:nowrap;font-size:1rem;transition:background .15s,border-color .15s,color .15s}
+.btn-primary{background:var(--navy);color:#fff;border:1px solid var(--navy)}
+.btn-primary:hover{background:#071d75}
+.btn-outline{background:#fff;color:var(--navy);border:1px solid var(--navy)}
+.btn-outline:hover{background:var(--blue-soft)}
 .btn.small{padding:8px 14px;font-size:.88rem;border-radius:0}
+:root[data-theme="dark"] .btn-primary{background:#EEF2F7;color:var(--navy);border-color:#EEF2F7}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-primary{background:#EEF2F7;color:var(--navy-deep);border-color:#EEF2F7}}
+:root[data-theme="dark"] .btn-outline{background:#EEF2F7;color:var(--navy);border-color:#EEF2F7}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-outline{background:#EEF2F7;color:var(--navy-deep);border-color:#EEF2F7}}
 @media (max-width:700px){.cta-in{grid-template-columns:1fr}}
 /* regions */
 .regions{display:grid;grid-template-columns:320px 1fr;gap:28px;align-items:start}
@@ -227,10 +235,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       <h1>Listening to Florida, <em>from the Panhandle to the Keys</em></h1>
       <p class="lede" style="margin-top:18px">A statewide tour of conversations about the data people need, the barriers they face, and how better information can support teaching, learning, research, and decision-making.</p>
       <div class="stats" id="stats"></div>
-      <div class="legend"><span class="heard"><i></i>Heard from so far</span><span class="ahead"><i></i>Still ahead</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;">
+        <a class="btn btn-primary" href="https://ufl.qualtrics.com/jfe/form/SV_emkizapovTtXwKG" target="_blank" rel="noopener">Take the survey</a>
+        <a class="btn btn-outline btn-small" href="https://lastinger.ufl.edu/our-work/lastinger-listening-tours/2026-27-lastinger-listening-tour/" target="_blank" rel="noopener">Visit the Lastinger Center site</a>
+      </div>
     </div>
     <div class="hero-map">
       <svg id="map" viewBox="-4 -6 566 426" role="img" aria-label="Map of Florida showing the ten Listening Tour regions; Northeast Florida, the Panhandle, Tampa Bay, Southwest Florida, and the Capitol region have been visited."></svg>
+      <div class="legend"><span class="heard"><i></i>Heard from so far</span><span class="ahead"><i></i>Still ahead</span></div>
     </div>
   </div>
 </section>
@@ -296,7 +308,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       <h2 class="h2i" style="color:#fff"><svg class="ic" style="color:var(--gold)"><use href="#i-chat"/></svg>Add your voice</h2>
       <p>The tour can only visit ten regions, but the statewide survey is open to anyone who collects, receives, shares, or uses education data or information in Florida. It takes about 10–15 minutes, responses are anonymous and reported only in summary, and there are no right or wrong answers. What you share will shape the recommendations that come from this work.</p>
     </div>
-    <a class="btn" href="https://ufl.qualtrics.com/jfe/form/SV_emkizapovTtXwKG" target="_blank" rel="noopener">Take the statewide survey</a>
+    <a class="btn btn-outline" href="https://ufl.qualtrics.com/jfe/form/SV_emkizapovTtXwKG" target="_blank" rel="noopener">Take the statewide survey</a>
   </div>
 </section>
 <section id="listening">
