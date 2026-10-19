@@ -170,7 +170,8 @@ nav a:hover{color:var(--navy);background:var(--sky-soft)}
 .sens div b{display:block;color:var(--navy)}
 
 /* audiences */
-.aud{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin-top:22px}
+.aud{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin-top:14px}
+.audgrp{margin-top:28px}.audgrp h3{margin:0;font-size:1.05rem;color:var(--navy);padding-left:10px;border-left:3px solid var(--gold)}.audgrp p{margin:8px 0 0;color:var(--muted);font-size:.95rem}
 .ac{background:var(--card);border:1px solid var(--line);border-radius:0;padding:16px}
 .ac b{display:block;color:var(--navy);margin-bottom:4px}
 .ac span{display:block;font-size:.88rem;color:var(--muted)}
@@ -329,8 +330,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 <section id="audiences">
   <div class="wrap">
     <h2 class="h2i"><svg class="ic"><use href="#i-hand"/></svg>Who we set out to hear</h2>
-    <p class="lede">Thirteen audience groups, each with its own facilitation module and session goal. Students are represented through families, caregivers, and the educators closest to them rather than engaged directly in this phase.</p>
-    <div class="aud" id="aud"></div>
+    <p class="lede">Thirteen audience groups in three tiers, each with its own session goal. Students are represented through families, caregivers, and the educators closest to them rather than engaged directly in this phase.</p>
+    <div id="aud"></div>
   </div>
 </section>
 
@@ -454,22 +455,23 @@ renderVoices("All regions");
 
 // ---- audiences
 const AUD=[
- ["A","Superintendents and district leaders","How district data supports decisions, where workflows create friction, and what statewide leaders should understand.",1],
- ["B","School leaders","How information reaches school leaders and staff, supports action, and varies across school contexts.",1],
- ["C","Teachers, instructional coaches, and counselors","How educators encounter, interpret, and act on data in daily practice, and where it helps or gets in the way.",1],
- ["D","Data, assessment, IT, and research staff","The data lifecycle, technical and operational constraints, and what makes data useful, trustworthy, and sustainable.",1],
  ["E","Early learning leaders and providers","How early learning coalitions and child care providers collect, share, and use data across the birth-to-five system, and what would make it more useful for children and families.",1],
  ["F","Families and caregivers","How families find, receive, interpret, and trust education information, and what would make it more useful.",1],
- ["G","Community and program partners","How community organizations and program teams use and share education data to coordinate supports, demonstrate impact, and surface what formal data may miss.",3],
+ ["C","Teachers, instructional coaches, and counselors","How educators encounter, interpret, and act on data in daily practice, and where it helps or gets in the way.",1],
+ ["B","School leaders","How information reaches school leaders and staff, supports action, and varies across school contexts.",1],
+ ["A","Superintendents and district leaders","How district data supports decisions, where workflows create friction, and what statewide leaders should understand.",1],
+ ["D","Data, assessment, IT, and research staff","The data lifecycle, technical and operational constraints, and what makes data useful, trustworthy, and sustainable.",1],
+ ["L","Florida Department of Education","Statewide strengths, system realities, AI considerations, and how recommendations can be accurate, feasible, and complementary to FLDOE's work.",2],
  ["H","Policymakers, state agencies, and legislative staff","Statewide decision needs, systemic barriers, AI considerations, credibility requirements, and conditions for feasible action.",2],
  ["I","Funders and philanthropic partners","What evidence informs investment, where capacity gaps warrant support, and what would make education data credible and investable.",2],
+ ["G","Community and program partners","How community organizations and program teams use and share education data to coordinate supports, demonstrate impact, and surface what formal data may miss.",3],
  ["J","Higher education leaders","Institutional data needs, student pathways, cross-institution sharing, AI considerations, and a sustainable data ecosystem.",3],
  ["K","Researchers and research partners","Research and evidence gaps, data-access barriers, AI-enabled research, and partnership models for statewide research capacity.",3],
- ["L","Florida Department of Education","Statewide strengths, system realities, AI considerations, and how recommendations can be accurate, feasible, and complementary to FLDOE's work.",2],
  ["M","Business leaders","How employers use data to make workforce decisions, anticipate future needs, and assess how education and training align with those needs.",3]
 ];
-const TIER={1:["Primary listening","t1"],2:["Influence & sustainability","t2"],3:["Strategic partner","t3"]};
-document.getElementById('aud').innerHTML=AUD.map(([m,n,w,t])=>`<div class="ac"><div class="acrow"><span class="mod">${m}</span><span class="tier ${TIER[t][1]}">${TIER[t][0]}</span></div><b>${n}</b><span>${w}</span></div>`).join('');
+const TIER={1:["Primary listening","t1"],2:["Influence & sustainability","t2"],3:["Strategic partners","t3"]};
+const TIERNOTE={1:"The people closest to students: the heart of the tour and the core of what we will report.",2:"Those who shape statewide conditions and can sustain what the tour recommends.",3:"Partners whose data, research, and workforce perspective complete the picture."};
+document.getElementById('aud').innerHTML=[1,2,3].map(t=>`<div class="audgrp"><h3>${TIER[t][0]}</h3><p>${TIERNOTE[t]}</p><div class="aud">${AUD.filter(a=>a[3]===t).map(([m,n,w])=>`<div class="ac"><b>${n}</b><span>${w}</span></div>`).join('')}</div></div>`).join('');
 </script>
 </body>
 </html>
