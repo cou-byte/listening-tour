@@ -351,7 +351,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div class="wrap">
     <h2 class="h2i"><svg class="ic"><use href="#i-calendar"/></svg>Where we are in the work</h2>
     <p class="lede">Four phases from spring 2026 to the fall 2027 launch. Field data collection runs through November.</p>
-    <span class="youare"><i style="width:8px;height:8px;border-radius:50%;background:currentColor;display:inline-block"></i>Now: 6 of 10 regions visited</span>
+    <span class="youare"><i style="width:8px;height:8px;border-radius:50%;background:currentColor;display:inline-block"></i><span id="youare">Now: 7 of 10 regions visited</span></span>
     <div class="tl">
       <div class="ph"><h3>Initiation &amp; planning</h3><div class="dates">April–August 2026</div><ul><li>Governance cadence established</li><li>IRB approval, research questions, and protocols</li><li>Materials and communications plan</li><li>Itinerary and stops developed</li></ul><div class="m">Done: tour scheduled and advisory board invited</div></div>
       <div class="ph now"><h3>Data collection</h3><div class="dates">September–November 2026</div><ul><li>Statewide listening tour</li><li>Interviews, focus groups, and surveys</li><li>Logistics and stakeholder engagement</li></ul><div class="m">November: field collection complete</div></div>
@@ -419,6 +419,7 @@ document.getElementById('stats').innerHTML=[
   [heard.length+" of 10","regions heard from","pin"],[SESSIONS,"sessions","chat"],[ROWS.length,"participants","people"],[orgs.size,"organizations","building"],[days.size,"session days","calendar"]
 ].map(([b,s,i])=>`<div class="stat"><svg class="ic"><use href="#i-${i}"/></svg><div><b>${b}</b><small>${s}</small></div></div>`).join('');
 
+document.getElementById('youare').textContent=`Now: ${heard.length} of 10 regions visited`;
 document.getElementById('weekgrid').innerHTML=heard.map((r,i)=>`<div class="wk"><b>Week ${i+1}</b><small>${r.n}<br>${r.dates.replace(', 2026','')}</small></div>`).join('');
 
 // ---- region list + detail
