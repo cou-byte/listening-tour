@@ -253,7 +253,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     </div>
     <div class="hero-map">
       <svg id="map" viewBox="-4 -6 566 426" role="img" aria-label="Map of Florida showing the ten Listening Tour regions; Northeast Florida, the Panhandle, Tampa Bay, Southwest Florida, the Capitol region, North Central Florida, the Treasure / Space Coast, Central Florida, Sarasota / Heartland, and Southeast Florida have all been visited."></svg>
-      <div class="legend"><span class="heard"><i></i>Heard from</span></div>
+      <div class="legend"><span>Select a region to see who joined.</span></div>
     </div>
   </div>
 </section>
@@ -416,7 +416,7 @@ const heard=REGIONS.filter(r=>r.heard);
 const orgs=new Set(ROWS.map(r=>r.o));
 const days=new Set(ROWS.map(r=>r.r+r.d));
 document.getElementById('stats').innerHTML=[
-  [heard.length+" of 10","regions heard from","pin"],[SESSIONS,"sessions","chat"],[ROWS.length,"participants","people"],[orgs.size,"organizations","building"],[days.size,"session days","calendar"]
+  [heard.length+" of 10","regions visited","pin"],[SESSIONS,"sessions","chat"],[ROWS.length,"participants","people"],[orgs.size,"organizations","building"],[days.size,"session days","calendar"]
 ].map(([b,s,i])=>`<div class="stat"><svg class="ic"><use href="#i-${i}"/></svg><div><b>${b}</b><small>${s}</small></div></div>`).join('');
 
 document.getElementById('youare').textContent=`Now: ${heard.length} of 10 regions visited`;
